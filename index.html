@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniket Kumar | Portfolio</title>
+    <meta name="description" content="Portfolio of Aniket Kumar, B.Tech CSE (DSCC) student specializing in Data Science and Cloud Computing.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons and Favicon -->
+    <link rel="icon" href="assets/my pfp.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css?v=1.1">
+</head>
+<body>
+    <div class="background-effects">
+        <canvas id="neural-canvas"></canvas>
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">aniket<span>@portfolio</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education-certifications">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="container">
+        
+        <!-- Bento Section (About, Skills, Contact) -->
+        <section id="about" class="section fade-in" style="padding-top: 8rem; padding-bottom: 3rem;">
+            <div class="bento-grid">
+                <!-- Hero Item (Span 3 cols) -->
+                <div class="bento-item bento-col-span-3" style="display: flex; flex-direction: column; justify-content: flex-start; padding: 0; overflow: hidden;">
+                    <div style="width: 100%; height: 180px; background-image: url('assets/banner.jpg'); background-size: cover; background-position: center; border-bottom: 1px dashed var(--border-color);"></div>
+                    <div id="hero-container" class="hero-container-inner">
+                        <!-- Dynamically populated by script.js -->
+                    </div>
+                </div>
+
+                <!-- Contact item moved below experience -->
+
+                <!-- Skills Item (Span 3) -->
+                <div class="bento-item bento-col-span-3">
+                    <h2 id="skills" class="section-title">skills</h2>
+                    <div id="skills-container" style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-content: flex-start;">
+                        <!-- Dynamically populated by script.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section fade-in" style="padding-top: 3rem;">
+            <h2 id="projects" class="section-title">projects</h2>
+            <div id="projects-container" class="projects-grid">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section fade-in">
+            <h2 id="experience" class="section-title">experience</h2>
+            <div id="experience-container" class="timeline">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- Education & Certifications Section -->
+        <section class="section fade-in">
+            <h2 id="education-certifications" class="section-title">education & certifications</h2>
+            <div class="grid-layout">
+                <div class="column">
+                    <h3 style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">~/education</h3>
+                    <div id="education-container" class="timeline">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+                <div class="column">
+                    <h3 style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">~/certifications</h3>
+                    <div id="certifications-container" class="timeline">
+                        <!-- Dynamically populated by script.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section fade-in">
+            <h2 id="contact" class="section-title">contact</h2>
+            <div class="bento-item" id="inquiry" style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column;">
+                <div id="contact-container" style="display: flex; flex-direction: column; justify-content: center;">
+                    <!-- Dynamically populated by script.js -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <span id="current-year"></span> Aniket Kumar.</p>
+        </div>
+    </footer>
+
+    <!-- Data and Scripts -->
+    <script src="data.js?v=1.1"></script>
+    <script src="script.js?v=1.1"></script>
+</body>
+</html>
