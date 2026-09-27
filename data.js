@@ -5,7 +5,6 @@ const portfolioData = {
     tagline: "B.Tech CSE Student · Machine Learning & Cloud",
     role: "ML & Software Developer",
     location: "Ranchi, Jharkhand, India",
-    coordinates: "23.3441° N, 85.3096° E",
     timezone: "Asia/Kolkata",
     utcOffset: "+05:30",
     phone: "+91 9153804578",
