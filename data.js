@@ -14,7 +14,7 @@ const portfolioData = {
     resume: "Aniket_Kumar_Resume.pdf",
     status: "Available for internships & full-time roles",
     statusAvailable: true,
-    about: "I am a dedicated Computer Science student specializing in Data Science and Cloud Computing. Passionate about machine learning, web development, and solving real-world problems through clean code and scalable architecture."
+    about: "Computer Science student at Sarala Birla University. I know my way around Python, machine learning basics, and web fundamentals. Currently learning, experimenting, and trying to build things that actually work."
   },
   education: [
     {
