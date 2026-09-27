@@ -41,12 +41,13 @@
     </script>
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=2.1">
 </head>
 <body>
 
-    <!-- Subtle Background Grid -->
+    <!-- Subtle Background Ambient Grid & Spotlight -->
     <div class="bg-grid-pattern" aria-hidden="true"></div>
+    <div class="ambient-glow" aria-hidden="true"></div>
 
     <!-- Sticky Minimalist Navigation -->
     <header class="header-nav">
@@ -105,12 +106,14 @@
             <span class="corner-cross">+</span>
         </div>
 
-        <!-- Hero Section -->
+        <!-- Hero Section with Integrated Banner & Profile Card -->
         <section id="about" class="section hero-section">
+            
+            <!-- Top Availability & Clock Strip -->
             <div class="hero-top-strip">
                 <div class="availability-tag">
                     <span class="pulse-emerald"></span>
-                    <span>Available for internships & full-time roles</span>
+                    <span>Available for internships &amp; full-time roles</span>
                 </div>
                 <div class="geo-clock" id="live-time-container">
                     <i class="far fa-clock" aria-hidden="true"></i>
@@ -119,24 +122,32 @@
                 </div>
             </div>
 
-            <div class="hero-profile-grid">
-                <div class="avatar-column">
-                    <div class="avatar-frame">
-                        <img src="assets/my pfp.jpg" alt="Aniket Kumar" class="avatar-img" width="130" height="130">
-                        <span class="avatar-verified" title="Verified developer profile">
-                            <i class="fas fa-check" aria-hidden="true"></i>
-                        </span>
-                    </div>
-                    <span class="figure-label">Fig. 01 — Developer</span>
+            <!-- Profile Master Card with Banner Backdrop -->
+            <div class="hero-master-card spotlight-card">
+                <!-- Banner Cover -->
+                <div class="hero-banner-cover">
+                    <img src="assets/banner.jpg" alt="Cover Banner" class="banner-cover-img" loading="eager">
+                    <div class="banner-gradient-mask"></div>
+                    <span class="banner-tag">Fig. 01 — Overview</span>
                 </div>
 
-                <div class="profile-details-column">
-                    <div class="name-row">
-                        <h1 class="hero-name">Aniket Kumar</h1>
-                        <span class="handle-badge">@aniketkumar</span>
+                <!-- Profile Content Body -->
+                <div class="hero-card-body">
+                    <div class="avatar-row-wrapper">
+                        <div class="avatar-frame">
+                            <img src="assets/my pfp.jpg" alt="Aniket Kumar" class="avatar-img" width="112" height="112">
+                            <span class="avatar-verified" title="Verified developer profile">
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="hero-title-group">
+                            <div class="name-row">
+                                <h1 class="hero-name">Aniket Kumar</h1>
+                                <span class="handle-badge">@aniketkumar</span>
+                            </div>
+                            <p class="hero-role-headline">Machine Learning &amp; Software Developer</p>
+                        </div>
                     </div>
-                    <p class="hero-headline">Machine Learning & Software Developer</p>
-                    <p class="hero-subheadline">B.Tech CSE (Data Science & Cloud Computing) at Sarala Birla University</p>
 
                     <div class="meta-pills-row">
                         <span class="meta-pill" title="Location">
@@ -147,45 +158,67 @@
                             <i class="fas fa-compass" aria-hidden="true"></i>
                             <span class="font-mono">23.34°N, 85.31°E</span>
                         </span>
+                        <span class="meta-pill" title="Education">
+                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                            <span>Sarala Birla University</span>
+                        </span>
                     </div>
-                </div>
-            </div>
 
-            <!-- About Narrative -->
-            <div class="hero-narrative">
-                <p>
-                    I am a dedicated Computer Science student specializing in Data Science and Cloud Computing. 
-                    I build machine learning pipelines, engineer full-stack web applications, and craft clean, resilient software to solve complex real-world problems.
-                </p>
-            </div>
+                    <!-- Narrative Bio -->
+                    <div class="hero-narrative">
+                        <p>
+                            Dedicated Computer Science student specializing in <strong>Data Science</strong> and <strong>Cloud Computing</strong>. 
+                            I design and train machine learning pipelines, build full-stack web applications, and develop scalable software to solve real-world problems through clean code.
+                        </p>
+                    </div>
 
-            <!-- Quick Action Bar -->
-            <div class="hero-action-bar">
-                <div class="hero-cta-group">
-                    <a href="mailto:aniketkr2101@gmail.com" class="btn-craft btn-primary-craft">
-                        <i class="far fa-envelope" aria-hidden="true"></i>
-                        <span>Get in touch</span>
-                    </a>
-                    <button type="button" class="btn-craft btn-secondary-craft" id="copy-email-btn" data-email="aniketkr2101@gmail.com" title="Copy email address to clipboard">
-                        <i class="far fa-copy" aria-hidden="true"></i>
-                        <span class="copy-label">Copy Email</span>
-                    </button>
-                    <a href="Aniket_Kumar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-craft btn-ghost-craft">
-                        <i class="far fa-file-pdf" aria-hidden="true"></i>
-                        <span>Resume</span>
-                    </a>
-                </div>
+                    <!-- Key Impact Metrics Strip -->
+                    <div class="metrics-strip">
+                        <div class="metric-item">
+                            <span class="metric-value">90.2%</span>
+                            <span class="metric-label">Model Accuracy (Random Forest)</span>
+                        </div>
+                        <div class="metric-divider" aria-hidden="true"></div>
+                        <div class="metric-item">
+                            <span class="metric-value">0.959</span>
+                            <span class="metric-label">AUC-ROC Classification Score</span>
+                        </div>
+                        <div class="metric-divider" aria-hidden="true"></div>
+                        <div class="metric-item">
+                            <span class="metric-value">8.02</span>
+                            <span class="metric-label">Cumulative GPA / 10.0</span>
+                        </div>
+                    </div>
 
-                <div class="hero-social-links">
-                    <a href="https://github.com/Aniketkumar-01" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub Profile" title="GitHub">
-                        <i class="fab fa-github" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/aniketkumar001" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn Profile" title="LinkedIn">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://colab.research.google.com/drive/1hpX3fsm4CEysk9i_4PBCJ2h5ZaahkWe6" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Google Colab Research" title="Google Colab">
-                        <i class="fas fa-brain" aria-hidden="true"></i>
-                    </a>
+                    <!-- Quick Action Bar -->
+                    <div class="hero-action-bar">
+                        <div class="hero-cta-group">
+                            <a href="mailto:aniketkr2101@gmail.com" class="btn-craft btn-primary-craft">
+                                <i class="far fa-envelope" aria-hidden="true"></i>
+                                <span>Get in touch</span>
+                            </a>
+                            <button type="button" class="btn-craft btn-secondary-craft" id="copy-email-btn" data-email="aniketkr2101@gmail.com" title="Copy email address to clipboard">
+                                <i class="far fa-copy" aria-hidden="true"></i>
+                                <span class="copy-label">Copy Email</span>
+                            </button>
+                            <a href="Aniket_Kumar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-craft btn-ghost-craft">
+                                <i class="far fa-file-pdf" aria-hidden="true"></i>
+                                <span>Resume</span>
+                            </a>
+                        </div>
+
+                        <div class="hero-social-links">
+                            <a href="https://github.com/Aniketkumar-01" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub Profile" title="GitHub">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/aniketkumar001" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn Profile" title="LinkedIn">
+                                <i class="fab fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://colab.research.google.com/drive/1hpX3fsm4CEysk9i_4PBCJ2h5ZaahkWe6" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Google Colab Research" title="Google Colab">
+                                <i class="fas fa-brain" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -203,25 +236,24 @@
                     <span class="tag-slash">/</span>
                     <span class="tag-title">EXPERIENCE</span>
                 </div>
-                <span class="section-meta-caption">Research & Industry Work</span>
+                <span class="section-meta-caption">Research &amp; Industry Work</span>
             </div>
 
             <div id="experience-list" class="craft-timeline">
-                <!-- Dynamically populated or rendered -->
-                <article class="timeline-card">
+                <article class="timeline-card spotlight-card">
                     <div class="timeline-card-header">
                         <div class="timeline-role-group">
                             <h3 class="role-title">
                                 Machine Learning Intern
                                 <a href="https://colab.research.google.com/drive/1hpX3fsm4CEysk9i_4PBCJ2h5ZaahkWe6" target="_blank" rel="noopener noreferrer" class="external-pill-link" title="Open Google Colab Notebook">
-                                    <span>Colab</span>
+                                    <span>Colab Research</span>
                                     <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
                                 </a>
                             </h3>
                             <div class="company-subline">
                                 <span class="company-name">IIIT Ranchi</span>
                                 <span class="bullet-sep">•</span>
-                                <span class="company-loc">Ranchi, India (On-Site)</span>
+                                <span class="company-loc">Ranchi, Jharkhand (On-Site)</span>
                             </div>
                         </div>
                         <div class="timeline-period-badge">
@@ -232,17 +264,17 @@
 
                     <div class="timeline-body">
                         <ul class="craft-bullet-list">
-                            <li>Built and benchmarked 5 classification algorithms (Random Forest, Logistic Regression, SVM, XGBoost, Neural Network) for clinical heart disease risk prediction.</li>
+                            <li>Built and benchmarked 5 classification algorithms (Random Forest, Logistic Regression, SVM, XGBoost, Neural Network) for clinical cardiovascular disease risk prediction.</li>
                             <li>The optimized Random Forest ensemble achieved <strong>90.2% accuracy</strong>, <strong>96.4% recall</strong>, and <strong>0.959 AUC</strong>, significantly minimizing false negative rates in clinical trials.</li>
-                            <li>Applied rigorous data preprocessing, feature selection, outlier handling, and cross-validated hyperparameter tuning.</li>
+                            <li>Applied end-to-end data preprocessing, correlation analysis, feature selection, outlier handling, and hyperparameter tuning via cross-validation.</li>
                             <li>Authored detailed technical documentation and research evaluation metrics for faculty mentors and peers.</li>
                         </ul>
 
                         <div class="card-tech-pills">
-                            <span class="mini-pill">Python</span>
+                            <span class="mini-pill"><img src="assets/python.png" alt="" class="inline-pill-icon">Python</span>
                             <span class="mini-pill">Scikit-Learn</span>
                             <span class="mini-pill">Random Forest</span>
-                            <span class="mini-pill">AUC-ROC</span>
+                            <span class="mini-pill">AUC-ROC (0.959)</span>
                             <span class="mini-pill">Feature Selection</span>
                         </div>
                     </div>
@@ -263,22 +295,22 @@
                     <span class="tag-slash">/</span>
                     <span class="tag-title">SELECTED WORK</span>
                 </div>
-                <span class="section-meta-caption">Production Apps & Systems</span>
+                <span class="section-meta-caption">Interactive ML &amp; Web Applications</span>
             </div>
 
             <div id="projects-grid" class="projects-list">
-                <!-- Project 1 -->
-                <article class="project-craft-card">
+                <!-- Project 1: Solar Rooftop Analyzer -->
+                <article class="project-craft-card spotlight-card">
                     <div class="project-banner-wrapper">
                         <img src="assets/solar_rooftop_banner.svg" alt="Solar Rooftop Analyzer Preview" class="project-banner-img" loading="lazy">
                         <div class="banner-overlay-tags">
-                            <span class="banner-status-badge">Live Deployment</span>
+                            <span class="banner-status-badge"><span class="badge-dot-live"></span> Live Deployment</span>
                         </div>
                     </div>
                     <div class="project-content-block">
                         <div class="project-meta-row">
                             <div class="project-title-area">
-                                <span class="project-category-kicker">Geospatial ML · Web Tool</span>
+                                <span class="project-category-kicker">Geospatial ML · Interactive Web App</span>
                                 <h3 class="project-title">Solar Rooftop Analyzer</h3>
                             </div>
                             <div class="project-links-group">
@@ -288,7 +320,7 @@
                                 </a>
                                 <a href="https://github.com/Aniketkumar-01/Solar-Rooftop-Analyzer-" target="_blank" rel="noopener noreferrer" class="link-pill secondary-pill" aria-label="View Solar Rooftop Analyzer on GitHub">
                                     <i class="fab fa-github" aria-hidden="true"></i>
-                                    <span>Code</span>
+                                    <span>Source Code</span>
                                 </a>
                             </div>
                         </div>
@@ -303,8 +335,8 @@
                         </ul>
 
                         <div class="card-tech-pills">
-                            <span class="mini-pill">Python</span>
-                            <span class="mini-pill">Streamlit</span>
+                            <span class="mini-pill"><img src="assets/python.png" alt="" class="inline-pill-icon">Python</span>
+                            <span class="mini-pill"><img src="assets/Streamlit.png" alt="" class="inline-pill-icon">Streamlit</span>
                             <span class="mini-pill">Pandas</span>
                             <span class="mini-pill">Folium</span>
                             <span class="mini-pill">NASA POWER API</span>
@@ -313,12 +345,12 @@
                     </div>
                 </article>
 
-                <!-- Project 2 -->
-                <article class="project-craft-card">
+                <!-- Project 2: Heart Disease Prediction App -->
+                <article class="project-craft-card spotlight-card">
                     <div class="project-banner-wrapper">
                         <img src="assets/heart_disease_banner_1.svg" alt="Heart Disease Prediction App Preview" class="project-banner-img" loading="lazy">
                         <div class="banner-overlay-tags">
-                            <span class="banner-status-badge">Live Deployment</span>
+                            <span class="banner-status-badge"><span class="badge-dot-live"></span> Live Deployment</span>
                         </div>
                     </div>
                     <div class="project-content-block">
@@ -334,7 +366,7 @@
                                 </a>
                                 <a href="https://github.com/Aniketkumar-01" target="_blank" rel="noopener noreferrer" class="link-pill secondary-pill" aria-label="View Project on GitHub">
                                     <i class="fab fa-github" aria-hidden="true"></i>
-                                    <span>Code</span>
+                                    <span>GitHub</span>
                                 </a>
                             </div>
                         </div>
@@ -349,11 +381,11 @@
                         </ul>
 
                         <div class="card-tech-pills">
-                            <span class="mini-pill">Python</span>
-                            <span class="mini-pill">Streamlit</span>
+                            <span class="mini-pill"><img src="assets/python.png" alt="" class="inline-pill-icon">Python</span>
+                            <span class="mini-pill"><img src="assets/Streamlit.png" alt="" class="inline-pill-icon">Streamlit</span>
                             <span class="mini-pill">Scikit-learn</span>
                             <span class="mini-pill">Random Forest</span>
-                            <span class="mini-pill">Data Preprocessing</span>
+                            <span class="mini-pill">Clinical ML</span>
                         </div>
                     </div>
                 </article>
@@ -373,15 +405,15 @@
                     <span class="tag-slash">/</span>
                     <span class="tag-title">TECH STACK</span>
                 </div>
-                <span class="section-meta-caption">Languages, ML & Tooling</span>
+                <span class="section-meta-caption">Languages, ML &amp; Tooling</span>
             </div>
 
             <div class="skills-craft-grid">
                 <!-- Group 1: Languages & Web -->
-                <div class="skill-category-card">
+                <div class="skill-category-card spotlight-card">
                     <div class="category-header">
                         <i class="fas fa-code category-icon" aria-hidden="true"></i>
-                        <h4 class="category-name">Languages & Core</h4>
+                        <h4 class="category-name">Languages &amp; Core</h4>
                     </div>
                     <div class="skill-pills-container">
                         <span class="skill-pill-item"><img src="assets/python.png" alt="" class="skill-icon-img" loading="lazy">Python</span>
@@ -393,31 +425,31 @@
                 </div>
 
                 <!-- Group 2: Machine Learning & Data -->
-                <div class="skill-category-card">
+                <div class="skill-category-card spotlight-card">
                     <div class="category-header">
                         <i class="fas fa-brain category-icon" aria-hidden="true"></i>
-                        <h4 class="category-name">Machine Learning & Data</h4>
+                        <h4 class="category-name">Machine Learning &amp; Data</h4>
                     </div>
                     <div class="skill-pills-container">
-                        <span class="skill-pill-item">Scikit-Learn</span>
+                        <span class="skill-pill-item"><img src="assets/python.png" alt="" class="skill-icon-img" loading="lazy">Scikit-Learn</span>
                         <span class="skill-pill-item">Pandas</span>
                         <span class="skill-pill-item">NumPy</span>
                         <span class="skill-pill-item">Random Forest</span>
                         <span class="skill-pill-item">Model Tuning</span>
                         <span class="skill-pill-item">AUC-ROC Evaluation</span>
-                        <span class="skill-pill-item">Feature Engineering</span>
+                        <span class="skill-pill-item">Feature Selection</span>
                     </div>
                 </div>
 
                 <!-- Group 3: Frameworks & Developer Tools -->
-                <div class="skill-category-card">
+                <div class="skill-category-card spotlight-card">
                     <div class="category-header">
                         <i class="fas fa-layer-group category-icon" aria-hidden="true"></i>
-                        <h4 class="category-name">Frameworks & Tools</h4>
+                        <h4 class="category-name">Frameworks &amp; Tools</h4>
                     </div>
                     <div class="skill-pills-container">
                         <span class="skill-pill-item"><img src="assets/Streamlit.png" alt="" class="skill-icon-img" loading="lazy">Streamlit</span>
-                        <span class="skill-pill-item"><img src="assets/github.png" alt="" class="skill-icon-img" loading="lazy">Git & GitHub</span>
+                        <span class="skill-pill-item"><img src="assets/github.png" alt="" class="skill-icon-img" loading="lazy">Git &amp; GitHub</span>
                         <span class="skill-pill-item">RESTful APIs</span>
                         <span class="skill-pill-item">Google Colab</span>
                         <span class="skill-pill-item">VS Code</span>
@@ -425,13 +457,13 @@
                 </div>
 
                 <!-- Group 4: CS Foundations -->
-                <div class="skill-category-card">
+                <div class="skill-category-card spotlight-card">
                     <div class="category-header">
                         <i class="fas fa-terminal category-icon" aria-hidden="true"></i>
                         <h4 class="category-name">CS Fundamentals</h4>
                     </div>
                     <div class="skill-pills-container">
-                        <span class="skill-pill-item">Data Structures & Algorithms</span>
+                        <span class="skill-pill-item">Data Structures &amp; Algorithms</span>
                         <span class="skill-pill-item">DBMS</span>
                         <span class="skill-pill-item">OOP Architecture</span>
                         <span class="skill-pill-item">Cloud Basics</span>
@@ -451,9 +483,9 @@
                 <div class="section-tag">
                     <span class="tag-num">04</span>
                     <span class="tag-slash">/</span>
-                    <span class="tag-title">EDUCATION & CERTIFICATIONS</span>
+                    <span class="tag-title">EDUCATION &amp; CREDENTIALS</span>
                 </div>
-                <span class="section-meta-caption">Academic Journey & Credentials</span>
+                <span class="section-meta-caption">Academic Journey &amp; Certifications</span>
             </div>
 
             <div class="edu-cert-columns">
@@ -464,12 +496,12 @@
                         <h4 class="subpanel-title">Academic Degree</h4>
                     </div>
 
-                    <div class="institution-card">
+                    <div class="institution-card spotlight-card">
                         <div class="institution-header">
                             <div>
                                 <h5 class="institution-name">Sarala Birla University</h5>
                                 <span class="degree-title">B.Tech in Computer Science and Engineering</span>
-                                <span class="specialization-tag">Specialization: Data Science & Cloud Computing</span>
+                                <span class="specialization-tag">Specialization: Data Science &amp; Cloud Computing</span>
                             </div>
                             <span class="duration-badge">2023 – Present</span>
                         </div>
@@ -487,10 +519,10 @@
                 <div class="craft-subpanel">
                     <div class="subpanel-title-row">
                         <i class="fas fa-award" aria-hidden="true"></i>
-                        <h4 class="subpanel-title">Credentials & Certifications</h4>
+                        <h4 class="subpanel-title">Credentials &amp; Certifications</h4>
                     </div>
 
-                    <div class="cert-card">
+                    <div class="cert-card spotlight-card">
                         <div class="cert-header">
                             <div>
                                 <h5 class="cert-name">Data Analytics with AI Internship</h5>
@@ -527,7 +559,7 @@
                 <span class="section-meta-caption">Let's build together</span>
             </div>
 
-            <div class="contact-craft-card">
+            <div class="contact-craft-card spotlight-card">
                 <div class="contact-callout">
                     <h3 class="contact-heading">Looking for an enthusiastic ML engineer or developer?</h3>
                     <p class="contact-copy">
@@ -720,7 +752,7 @@
     </div>
 
     <!-- Data and Application Script -->
-    <script src="data.js?v=2.0"></script>
-    <script src="script.js?v=2.0"></script>
+    <script src="data.js?v=2.1"></script>
+    <script src="script.js?v=2.1"></script>
 </body>
 </html>

@@ -46,7 +46,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --------------------------------------------------------------------------
-    // 2. Real-time Indian Standard Time (IST) Clock for Ranchi
+    // 2. Interactive Spotlight Card Glow on Mousemove
+    // --------------------------------------------------------------------------
+    const spotlightCards = document.querySelectorAll('.spotlight-card');
+    spotlightCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--mouse-x', `-999px`);
+            card.style.setProperty('--mouse-y', `-999px`);
+        });
+    });
+
+    // --------------------------------------------------------------------------
+    // 3. Real-time Indian Standard Time (IST) Clock for Ranchi
     // --------------------------------------------------------------------------
     const clockEl = document.getElementById('live-clock');
 
@@ -63,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }).format(now);
             clockEl.textContent = timeString;
         } catch (err) {
-            // Fallback to UTC offset calculation if Intl timezone fails
             const d = new Date();
             const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
             const istDate = new Date(utc + (3600000 * 5.5));
@@ -75,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateLiveClock, 1000);
 
     // --------------------------------------------------------------------------
-    // 3. Dynamic Footer Year
+    // 4. Dynamic Footer Year
     // --------------------------------------------------------------------------
     const yearEl = document.getElementById('current-year');
     if (yearEl) {
@@ -83,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --------------------------------------------------------------------------
-    // 4. Toast Notification System
+    // 5. Toast Notification System
     // --------------------------------------------------------------------------
     const toastEl = document.getElementById('craft-toast');
     const toastMsgEl = document.getElementById('toast-message');
@@ -104,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --------------------------------------------------------------------------
-    // 5. Copy Email Action with Visual Feedback
+    // 6. Copy Email Action with Visual Feedback
     // --------------------------------------------------------------------------
     const emailToCopy = (typeof portfolioData !== 'undefined' && portfolioData.personalInfo && portfolioData.personalInfo.email) 
         ? portfolioData.personalInfo.email 
@@ -164,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --------------------------------------------------------------------------
-    // 6. Command Palette Modal (Cmd+K / Ctrl+K)
+    // 7. Command Palette Modal (Cmd+K / Ctrl+K)
     // --------------------------------------------------------------------------
     const commandModal = document.getElementById('command-modal');
     const openCommandBtn = document.getElementById('open-command-palette');
@@ -353,9 +370,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --------------------------------------------------------------------------
-    // 7. Interactive Hover Craft Enhancements
+    // 8. Interactive In-Page Smooth Navigation
     // --------------------------------------------------------------------------
-    // Smooth scroll for in-page anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
