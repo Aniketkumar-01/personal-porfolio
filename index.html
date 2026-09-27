@@ -1,127 +1,726 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aniket Kumar | Portfolio</title>
-    <meta name="description" content="Portfolio of Aniket Kumar, B.Tech CSE (DSCC) student specializing in Data Science and Cloud Computing.">
-    <!-- Google Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Aniket Kumar – Machine Learning & Software Developer</title>
+    <meta name="description" content="Portfolio of Aniket Kumar, B.Tech CSE student specializing in Data Science, Machine Learning pipelines, and Cloud Computing. Built with minimalist craft precision.">
+    <meta name="author" content="Aniket Kumar">
+    <meta name="keywords" content="Aniket Kumar, ML Engineer, Data Science, Portfolio, Streamlit, Python, Ranchi, Sarala Birla University, IIIT Ranchi">
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Aniket Kumar – Machine Learning & Software Developer">
+    <meta property="og:description" content="Dedicated Computer Science student specializing in Data Science and Cloud Computing. Passionate about machine learning pipelines and intuitive web apps.">
+    <meta property="og:image" content="assets/banner.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aniket Kumar – Portfolio">
+    <meta name="twitter:description" content="Machine Learning & Software Developer based in Ranchi, India.">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/my pfp.jpg" type="image/jpeg">
+
+    <!-- Fonts: Geist, Geist Mono, Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Icons and Favicon -->
-    <link rel="icon" href="assets/my pfp.jpg" type="image/jpeg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=1.1">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Theme Flash Prevention Script -->
+    <script>
+        (function() {
+            try {
+                const storedTheme = localStorage.getItem('portfolio-theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=2.0">
 </head>
 <body>
-    <div class="background-effects">
-        <canvas id="neural-canvas"></canvas>
-        <div class="glow-1"></div>
-        <div class="glow-2"></div>
-    </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">aniket<span>@portfolio</span></div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education-certifications">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
+    <!-- Subtle Background Grid -->
+    <div class="bg-grid-pattern" aria-hidden="true"></div>
+
+    <!-- Sticky Minimalist Navigation -->
+    <header class="header-nav">
+        <div class="header-inner">
+            <a href="#" class="brand-monogram" aria-label="Aniket Kumar Home">
+                <span class="brand-logo">AK</span>
+                <span class="brand-name">aniket<span class="brand-ext">.dev</span></span>
+            </a>
+
+            <!-- Status Indicator -->
+            <div class="status-indicator-badge" title="Actively looking for ML & Software roles">
+                <span class="status-dot"></span>
+                <span class="status-text">Available for work</span>
+            </div>
+
+            <div class="header-actions">
+                <!-- Navigation Links for Desktop -->
+                <nav class="desktop-nav" aria-label="Main Navigation">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Stack</a>
+                    <a href="#education" class="nav-link">Education</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="header-divider" aria-hidden="true"></div>
+
+                <!-- Command Menu Trigger -->
+                <button type="button" class="btn-icon-shortcut" id="open-command-palette" aria-label="Open Command Menu (Cmd+K)" title="Search & Quick Actions (⌘K / Ctrl+K)">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <kbd class="kbd-shortcut"><span class="kbd-mod">⌘</span>K</kbd>
+                </button>
+
+                <!-- Theme Toggle Button -->
+                <button type="button" class="btn-icon-shortcut" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme (Key: T)">
+                    <i class="fas fa-moon theme-icon-dark" aria-hidden="true"></i>
+                    <i class="fas fa-sun theme-icon-light" aria-hidden="true"></i>
+                </button>
+
+                <!-- Resume Button -->
+                <a href="Aniket_Kumar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-resume-header" aria-label="Open Resume in new tab">
+                    <span>Resume</span>
+                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Main Content Container -->
-    <main class="container">
-        
-        <!-- Bento Section (About, Skills, Contact) -->
-        <section id="about" class="section fade-in" style="padding-top: 8rem; padding-bottom: 3rem;">
-            <div class="bento-grid">
-                <!-- Hero Item (Span 3 cols) -->
-                <div class="bento-item bento-col-span-3" style="display: flex; flex-direction: column; justify-content: flex-start; padding: 0; overflow: hidden;">
-                    <div style="width: 100%; height: 180px; background-image: url('assets/banner.jpg'); background-size: cover; background-position: center; border-bottom: 1px dashed var(--border-color);"></div>
-                    <div id="hero-container" class="hero-container-inner">
-                        <!-- Dynamically populated by script.js -->
+    <!-- Main Screen-Line Container -->
+    <main class="craft-container">
+
+        <!-- Top Marker Crosses -->
+        <div class="corner-crosses-row" aria-hidden="true">
+            <span class="corner-cross">+</span>
+            <span class="corner-cross">+</span>
+        </div>
+
+        <!-- Hero Section -->
+        <section id="about" class="section hero-section">
+            <div class="hero-top-strip">
+                <div class="availability-tag">
+                    <span class="pulse-emerald"></span>
+                    <span>Available for internships & full-time roles</span>
+                </div>
+                <div class="geo-clock" id="live-time-container">
+                    <i class="far fa-clock" aria-hidden="true"></i>
+                    <span id="live-clock">--:--:-- --</span>
+                    <span class="tz-badge">IST</span>
+                </div>
+            </div>
+
+            <div class="hero-profile-grid">
+                <div class="avatar-column">
+                    <div class="avatar-frame">
+                        <img src="assets/my pfp.jpg" alt="Aniket Kumar" class="avatar-img" width="130" height="130">
+                        <span class="avatar-verified" title="Verified developer profile">
+                            <i class="fas fa-check" aria-hidden="true"></i>
+                        </span>
                     </div>
+                    <span class="figure-label">Fig. 01 — Developer</span>
                 </div>
 
-                <!-- Contact item moved below experience -->
-
-                <!-- Skills Item (Span 3) -->
-                <div class="bento-item bento-col-span-3">
-                    <h2 id="skills" class="section-title">skills</h2>
-                    <div id="skills-container" style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-content: flex-start;">
-                        <!-- Dynamically populated by script.js -->
+                <div class="profile-details-column">
+                    <div class="name-row">
+                        <h1 class="hero-name">Aniket Kumar</h1>
+                        <span class="handle-badge">@aniketkumar</span>
                     </div>
+                    <p class="hero-headline">Machine Learning & Software Developer</p>
+                    <p class="hero-subheadline">B.Tech CSE (Data Science & Cloud Computing) at Sarala Birla University</p>
+
+                    <div class="meta-pills-row">
+                        <span class="meta-pill" title="Location">
+                            <i class="fas fa-location-dot" aria-hidden="true"></i>
+                            <span>Ranchi, Jharkhand, India</span>
+                        </span>
+                        <span class="meta-pill" title="Coordinates">
+                            <i class="fas fa-compass" aria-hidden="true"></i>
+                            <span class="font-mono">23.34°N, 85.31°E</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Narrative -->
+            <div class="hero-narrative">
+                <p>
+                    I am a dedicated Computer Science student specializing in Data Science and Cloud Computing. 
+                    I build machine learning pipelines, engineer full-stack web applications, and craft clean, resilient software to solve complex real-world problems.
+                </p>
+            </div>
+
+            <!-- Quick Action Bar -->
+            <div class="hero-action-bar">
+                <div class="hero-cta-group">
+                    <a href="mailto:aniketkr2101@gmail.com" class="btn-craft btn-primary-craft">
+                        <i class="far fa-envelope" aria-hidden="true"></i>
+                        <span>Get in touch</span>
+                    </a>
+                    <button type="button" class="btn-craft btn-secondary-craft" id="copy-email-btn" data-email="aniketkr2101@gmail.com" title="Copy email address to clipboard">
+                        <i class="far fa-copy" aria-hidden="true"></i>
+                        <span class="copy-label">Copy Email</span>
+                    </button>
+                    <a href="Aniket_Kumar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-craft btn-ghost-craft">
+                        <i class="far fa-file-pdf" aria-hidden="true"></i>
+                        <span>Resume</span>
+                    </a>
+                </div>
+
+                <div class="hero-social-links">
+                    <a href="https://github.com/Aniketkumar-01" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub Profile" title="GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/aniketkumar001" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn Profile" title="LinkedIn">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://colab.research.google.com/drive/1hpX3fsm4CEysk9i_4PBCJ2h5ZaahkWe6" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Google Colab Research" title="Google Colab">
+                        <i class="fas fa-brain" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section class="section fade-in" style="padding-top: 3rem;">
-            <h2 id="projects" class="section-title">projects</h2>
-            <div id="projects-container" class="projects-grid">
-                <!-- Dynamically populated -->
-            </div>
-        </section>
+        <!-- Divider with Crosshair -->
+        <div class="section-divider">
+            <span class="divider-cross">+</span>
+        </div>
 
         <!-- Experience Section -->
-        <section class="section fade-in">
-            <h2 id="experience" class="section-title">experience</h2>
-            <div id="experience-container" class="timeline">
-                <!-- Dynamically populated -->
+        <section id="experience" class="section">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="tag-num">01</span>
+                    <span class="tag-slash">/</span>
+                    <span class="tag-title">EXPERIENCE</span>
+                </div>
+                <span class="section-meta-caption">Research & Industry Work</span>
+            </div>
+
+            <div id="experience-list" class="craft-timeline">
+                <!-- Dynamically populated or rendered -->
+                <article class="timeline-card">
+                    <div class="timeline-card-header">
+                        <div class="timeline-role-group">
+                            <h3 class="role-title">
+                                Machine Learning Intern
+                                <a href="https://colab.research.google.com/drive/1hpX3fsm4CEysk9i_4PBCJ2h5ZaahkWe6" target="_blank" rel="noopener noreferrer" class="external-pill-link" title="Open Google Colab Notebook">
+                                    <span>Colab</span>
+                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                </a>
+                            </h3>
+                            <div class="company-subline">
+                                <span class="company-name">IIIT Ranchi</span>
+                                <span class="bullet-sep">•</span>
+                                <span class="company-loc">Ranchi, India (On-Site)</span>
+                            </div>
+                        </div>
+                        <div class="timeline-period-badge">
+                            <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                            <span>May 2026 – July 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-body">
+                        <ul class="craft-bullet-list">
+                            <li>Built and benchmarked 5 classification algorithms (Random Forest, Logistic Regression, SVM, XGBoost, Neural Network) for clinical heart disease risk prediction.</li>
+                            <li>The optimized Random Forest ensemble achieved <strong>90.2% accuracy</strong>, <strong>96.4% recall</strong>, and <strong>0.959 AUC</strong>, significantly minimizing false negative rates in clinical trials.</li>
+                            <li>Applied rigorous data preprocessing, feature selection, outlier handling, and cross-validated hyperparameter tuning.</li>
+                            <li>Authored detailed technical documentation and research evaluation metrics for faculty mentors and peers.</li>
+                        </ul>
+
+                        <div class="card-tech-pills">
+                            <span class="mini-pill">Python</span>
+                            <span class="mini-pill">Scikit-Learn</span>
+                            <span class="mini-pill">Random Forest</span>
+                            <span class="mini-pill">AUC-ROC</span>
+                            <span class="mini-pill">Feature Selection</span>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
+
+        <!-- Divider with Crosshair -->
+        <div class="section-divider">
+            <span class="divider-cross">+</span>
+        </div>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="tag-num">02</span>
+                    <span class="tag-slash">/</span>
+                    <span class="tag-title">SELECTED WORK</span>
+                </div>
+                <span class="section-meta-caption">Production Apps & Systems</span>
+            </div>
+
+            <div id="projects-grid" class="projects-list">
+                <!-- Project 1 -->
+                <article class="project-craft-card">
+                    <div class="project-banner-wrapper">
+                        <img src="assets/solar_rooftop_banner.svg" alt="Solar Rooftop Analyzer Preview" class="project-banner-img" loading="lazy">
+                        <div class="banner-overlay-tags">
+                            <span class="banner-status-badge">Live Deployment</span>
+                        </div>
+                    </div>
+                    <div class="project-content-block">
+                        <div class="project-meta-row">
+                            <div class="project-title-area">
+                                <span class="project-category-kicker">Geospatial ML · Web Tool</span>
+                                <h3 class="project-title">Solar Rooftop Analyzer</h3>
+                            </div>
+                            <div class="project-links-group">
+                                <a href="https://solar-rooftop-analyzer.streamlit.app/" target="_blank" rel="noopener noreferrer" class="link-pill primary-pill" aria-label="Visit Solar Rooftop Analyzer Live Demo">
+                                    <span>Live App</span>
+                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://github.com/Aniketkumar-01/Solar-Rooftop-Analyzer-" target="_blank" rel="noopener noreferrer" class="link-pill secondary-pill" aria-label="View Solar Rooftop Analyzer on GitHub">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                    <span>Code</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <p class="project-description-text">
+                            Interactive satellite-enabled application enabling users to trace building rooftops on high-resolution maps to compute estimated solar energy yield, CO₂ emissions offset, and investment payback periods.
+                        </p>
+
+                        <ul class="project-highlights-list">
+                            <li>Integrated Folium satellite mapping with ArcGIS geocoding and the NASA POWER solar irradiance REST API.</li>
+                            <li>Designed an end-to-end data processing engine for user-uploaded energy billing CSVs with dynamic yield calculations.</li>
+                        </ul>
+
+                        <div class="card-tech-pills">
+                            <span class="mini-pill">Python</span>
+                            <span class="mini-pill">Streamlit</span>
+                            <span class="mini-pill">Pandas</span>
+                            <span class="mini-pill">Folium</span>
+                            <span class="mini-pill">NASA POWER API</span>
+                            <span class="mini-pill">ArcGIS</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-craft-card">
+                    <div class="project-banner-wrapper">
+                        <img src="assets/heart_disease_banner_1.svg" alt="Heart Disease Prediction App Preview" class="project-banner-img" loading="lazy">
+                        <div class="banner-overlay-tags">
+                            <span class="banner-status-badge">Live Deployment</span>
+                        </div>
+                    </div>
+                    <div class="project-content-block">
+                        <div class="project-meta-row">
+                            <div class="project-title-area">
+                                <span class="project-category-kicker">Healthcare AI · Clinical Assessment</span>
+                                <h3 class="project-title">Heart Disease Prediction App</h3>
+                            </div>
+                            <div class="project-links-group">
+                                <a href="https://heart-disease-prediction-ml-algos.streamlit.app/" target="_blank" rel="noopener noreferrer" class="link-pill primary-pill" aria-label="Visit Heart Disease Prediction Live App">
+                                    <span>Live App</span>
+                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://github.com/Aniketkumar-01" target="_blank" rel="noopener noreferrer" class="link-pill secondary-pill" aria-label="View Project on GitHub">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                    <span>Code</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <p class="project-description-text">
+                            Clinical predictive web tool powered by machine learning algorithms that analyzes patient cardiovascular parameters in real-time, delivering 90.2% accuracy and actionable risk metrics.
+                        </p>
+
+                        <ul class="project-highlights-list">
+                            <li>Trained and validated 5 ML classifiers; deployed top-performing Random Forest model with 0.959 AUC.</li>
+                            <li>Interactive clinical dashboard enabling real-time risk assessment, probability breakdowns, and key risk factor highlights.</li>
+                        </ul>
+
+                        <div class="card-tech-pills">
+                            <span class="mini-pill">Python</span>
+                            <span class="mini-pill">Streamlit</span>
+                            <span class="mini-pill">Scikit-learn</span>
+                            <span class="mini-pill">Random Forest</span>
+                            <span class="mini-pill">Data Preprocessing</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Divider with Crosshair -->
+        <div class="section-divider">
+            <span class="divider-cross">+</span>
+        </div>
+
+        <!-- Skills / Tech Stack Section -->
+        <section id="skills" class="section">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="tag-num">03</span>
+                    <span class="tag-slash">/</span>
+                    <span class="tag-title">TECH STACK</span>
+                </div>
+                <span class="section-meta-caption">Languages, ML & Tooling</span>
+            </div>
+
+            <div class="skills-craft-grid">
+                <!-- Group 1: Languages & Web -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-code category-icon" aria-hidden="true"></i>
+                        <h4 class="category-name">Languages & Core</h4>
+                    </div>
+                    <div class="skill-pills-container">
+                        <span class="skill-pill-item"><img src="assets/python.png" alt="" class="skill-icon-img" loading="lazy">Python</span>
+                        <span class="skill-pill-item"><img src="assets/js.png" alt="" class="skill-icon-img" loading="lazy">JavaScript</span>
+                        <span class="skill-pill-item"><img src="assets/html.png" alt="" class="skill-icon-img" loading="lazy">HTML5</span>
+                        <span class="skill-pill-item"><img src="assets/css.png" alt="" class="skill-icon-img" loading="lazy">CSS3</span>
+                        <span class="skill-pill-item"><img src="assets/database.png" alt="" class="skill-icon-img" loading="lazy">SQL</span>
+                    </div>
+                </div>
+
+                <!-- Group 2: Machine Learning & Data -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-brain category-icon" aria-hidden="true"></i>
+                        <h4 class="category-name">Machine Learning & Data</h4>
+                    </div>
+                    <div class="skill-pills-container">
+                        <span class="skill-pill-item">Scikit-Learn</span>
+                        <span class="skill-pill-item">Pandas</span>
+                        <span class="skill-pill-item">NumPy</span>
+                        <span class="skill-pill-item">Random Forest</span>
+                        <span class="skill-pill-item">Model Tuning</span>
+                        <span class="skill-pill-item">AUC-ROC Evaluation</span>
+                        <span class="skill-pill-item">Feature Engineering</span>
+                    </div>
+                </div>
+
+                <!-- Group 3: Frameworks & Developer Tools -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-layer-group category-icon" aria-hidden="true"></i>
+                        <h4 class="category-name">Frameworks & Tools</h4>
+                    </div>
+                    <div class="skill-pills-container">
+                        <span class="skill-pill-item"><img src="assets/Streamlit.png" alt="" class="skill-icon-img" loading="lazy">Streamlit</span>
+                        <span class="skill-pill-item"><img src="assets/github.png" alt="" class="skill-icon-img" loading="lazy">Git & GitHub</span>
+                        <span class="skill-pill-item">RESTful APIs</span>
+                        <span class="skill-pill-item">Google Colab</span>
+                        <span class="skill-pill-item">VS Code</span>
+                    </div>
+                </div>
+
+                <!-- Group 4: CS Foundations -->
+                <div class="skill-category-card">
+                    <div class="category-header">
+                        <i class="fas fa-terminal category-icon" aria-hidden="true"></i>
+                        <h4 class="category-name">CS Fundamentals</h4>
+                    </div>
+                    <div class="skill-pills-container">
+                        <span class="skill-pill-item">Data Structures & Algorithms</span>
+                        <span class="skill-pill-item">DBMS</span>
+                        <span class="skill-pill-item">OOP Architecture</span>
+                        <span class="skill-pill-item">Cloud Basics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider with Crosshair -->
+        <div class="section-divider">
+            <span class="divider-cross">+</span>
+        </div>
 
         <!-- Education & Certifications Section -->
-        <section class="section fade-in">
-            <h2 id="education-certifications" class="section-title">education & certifications</h2>
-            <div class="grid-layout">
-                <div class="column">
-                    <h3 style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">~/education</h3>
-                    <div id="education-container" class="timeline">
-                        <!-- Dynamically populated -->
+        <section id="education" class="section">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="tag-num">04</span>
+                    <span class="tag-slash">/</span>
+                    <span class="tag-title">EDUCATION & CERTIFICATIONS</span>
+                </div>
+                <span class="section-meta-caption">Academic Journey & Credentials</span>
+            </div>
+
+            <div class="edu-cert-columns">
+                <!-- Education Block -->
+                <div class="craft-subpanel">
+                    <div class="subpanel-title-row">
+                        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                        <h4 class="subpanel-title">Academic Degree</h4>
+                    </div>
+
+                    <div class="institution-card">
+                        <div class="institution-header">
+                            <div>
+                                <h5 class="institution-name">Sarala Birla University</h5>
+                                <span class="degree-title">B.Tech in Computer Science and Engineering</span>
+                                <span class="specialization-tag">Specialization: Data Science & Cloud Computing</span>
+                            </div>
+                            <span class="duration-badge">2023 – Present</span>
+                        </div>
+                        <div class="academic-highlight">
+                            <span class="cgpa-label">Cumulative GPA:</span>
+                            <span class="cgpa-value">8.02 / 10.0</span>
+                        </div>
+                        <p class="academic-note">
+                            Rigorous coursework across Data Structures, DBMS, Machine Learning principles, and Cloud Systems.
+                        </p>
                     </div>
                 </div>
-                <div class="column">
-                    <h3 style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">~/certifications</h3>
-                    <div id="certifications-container" class="timeline">
-                        <!-- Dynamically populated by script.js -->
+
+                <!-- Certification Block -->
+                <div class="craft-subpanel">
+                    <div class="subpanel-title-row">
+                        <i class="fas fa-award" aria-hidden="true"></i>
+                        <h4 class="subpanel-title">Credentials & Certifications</h4>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <div>
+                                <h5 class="cert-name">Data Analytics with AI Internship</h5>
+                                <span class="cert-issuer">AICTE | IBM SkillsBuild | BharatCares</span>
+                            </div>
+                            <span class="duration-badge">2026</span>
+                        </div>
+                        <p class="cert-description">
+                            Comprehensive program covering real-world data analytics pipelines, exploratory data analysis, and applied AI foundations.
+                        </p>
+                        <div class="card-tech-pills" style="margin-top: 0.6rem;">
+                            <span class="mini-pill">Data Analytics</span>
+                            <span class="mini-pill">AI Foundations</span>
+                            <span class="mini-pill">IBM SkillsBuild</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Divider with Crosshair -->
+        <div class="section-divider">
+            <span class="divider-cross">+</span>
+        </div>
+
         <!-- Contact Section -->
-        <section class="section fade-in">
-            <h2 id="contact" class="section-title">contact</h2>
-            <div class="bento-item" id="inquiry" style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column;">
-                <div id="contact-container" style="display: flex; flex-direction: column; justify-content: center;">
-                    <!-- Dynamically populated by script.js -->
+        <section id="contact" class="section">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="tag-num">05</span>
+                    <span class="tag-slash">/</span>
+                    <span class="tag-title">GET IN TOUCH</span>
+                </div>
+                <span class="section-meta-caption">Let's build together</span>
+            </div>
+
+            <div class="contact-craft-card">
+                <div class="contact-callout">
+                    <h3 class="contact-heading">Looking for an enthusiastic ML engineer or developer?</h3>
+                    <p class="contact-copy">
+                        I am actively open to internship opportunities, research collaborations, and full-time roles. 
+                        Whether you have an idea to discuss or just want to connect, feel free to drop an email.
+                    </p>
+                </div>
+
+                <div class="contact-channel-grid">
+                    <!-- Email Card -->
+                    <div class="channel-card">
+                        <div class="channel-icon-col">
+                            <i class="far fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <div class="channel-info-col">
+                            <span class="channel-label">Direct Email</span>
+                            <a href="mailto:aniketkr2101@gmail.com" class="channel-link">aniketkr2101@gmail.com</a>
+                        </div>
+                        <button type="button" class="btn-channel-action" id="copy-email-bottom-btn" data-email="aniketkr2101@gmail.com" title="Copy to clipboard">
+                            <i class="far fa-copy" aria-hidden="true"></i>
+                            <span class="sr-only">Copy Email</span>
+                        </button>
+                    </div>
+
+                    <!-- LinkedIn Card -->
+                    <a href="https://linkedin.com/in/aniketkumar001" target="_blank" rel="noopener noreferrer" class="channel-card hoverable">
+                        <div class="channel-icon-col">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </div>
+                        <div class="channel-info-col">
+                            <span class="channel-label">LinkedIn</span>
+                            <span class="channel-link">in/aniketkumar001</span>
+                        </div>
+                        <span class="channel-action-arrow">
+                            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </span>
+                    </a>
+
+                    <!-- GitHub Card -->
+                    <a href="https://github.com/Aniketkumar-01" target="_blank" rel="noopener noreferrer" class="channel-card hoverable">
+                        <div class="channel-icon-col">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </div>
+                        <div class="channel-info-col">
+                            <span class="channel-label">GitHub</span>
+                            <span class="channel-link">@Aniketkumar-01</span>
+                        </div>
+                        <span class="channel-action-arrow">
+                            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </span>
+                    </a>
+
+                    <!-- Resume Card -->
+                    <a href="Aniket_Kumar_Resume.pdf" target="_blank" rel="noopener noreferrer" class="channel-card hoverable">
+                        <div class="channel-icon-col">
+                            <i class="far fa-file-pdf" aria-hidden="true"></i>
+                        </div>
+                        <div class="channel-info-col">
+                            <span class="channel-label">Curriculum Vitae</span>
+                            <span class="channel-link">Aniket_Kumar_Resume.pdf</span>
+                        </div>
+                        <span class="channel-action-arrow">
+                            <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </span>
+                    </a>
                 </div>
             </div>
         </section>
+
+        <!-- Bottom Marker Crosses -->
+        <div class="corner-crosses-row" aria-hidden="true">
+            <span class="corner-cross">+</span>
+            <span class="corner-cross">+</span>
+        </div>
+
+        <!-- Footer -->
+        <footer class="craft-footer">
+            <div class="footer-top-line">
+                <span class="footer-copyright">
+                    &copy; <span id="current-year">2026</span> Aniket Kumar. All rights reserved.
+                </span>
+                <span class="footer-hint">
+                    Press <kbd>⌘K</kbd> or <kbd>Ctrl+K</kbd> for command menu · <kbd>T</kbd> for theme
+                </span>
+            </div>
+            <div class="footer-bottom-line">
+                <span class="footer-craft-badge">Crafted with precision &amp; performance · Inspired by modern design engineering</span>
+            </div>
+        </footer>
 
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p>&copy; <span id="current-year"></span> Aniket Kumar.</p>
-        </div>
-    </footer>
+    <!-- Command Palette Modal Dialog -->
+    <div id="command-modal" class="command-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cmd-search-input">
+        <div class="command-palette-box">
+            <div class="cmd-input-wrapper">
+                <i class="fas fa-search cmd-search-icon" aria-hidden="true"></i>
+                <input type="text" id="cmd-search-input" placeholder="Type a command or search section..." autocomplete="off" spellcheck="false" aria-label="Search command palette">
+                <button type="button" id="close-command-palette" class="cmd-esc-badge" aria-label="Close command palette">ESC</button>
+            </div>
 
-    <!-- Data and Scripts -->
-    <script src="data.js?v=1.1"></script>
-    <script src="script.js?v=1.1"></script>
+            <div class="cmd-results-list" id="cmd-results" role="listbox">
+                <!-- Group: Navigation -->
+                <div class="cmd-group-label">Navigation</div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="navigate" data-target="#about">
+                    <i class="far fa-user cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">About &amp; Overview</span>
+                    <span class="cmd-item-shortcut">#about</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="navigate" data-target="#experience">
+                    <i class="far fa-building cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Experience (IIIT Ranchi)</span>
+                    <span class="cmd-item-shortcut">#experience</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="navigate" data-target="#projects">
+                    <i class="fas fa-layer-group cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Projects &amp; Work</span>
+                    <span class="cmd-item-shortcut">#projects</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="navigate" data-target="#skills">
+                    <i class="fas fa-code cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Skills &amp; Tech Stack</span>
+                    <span class="cmd-item-shortcut">#skills</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="navigate" data-target="#education">
+                    <i class="fas fa-graduation-cap cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Education &amp; Credentials</span>
+                    <span class="cmd-item-shortcut">#education</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="navigate" data-target="#contact">
+                    <i class="far fa-envelope cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Get in Touch</span>
+                    <span class="cmd-item-shortcut">#contact</span>
+                </div>
+
+                <!-- Group: Actions -->
+                <div class="cmd-group-label">Actions</div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="copy-email">
+                    <i class="far fa-copy cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Copy Email Address</span>
+                    <span class="cmd-item-shortcut">aniketkr2101@gmail.com</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="open-url" data-url="Aniket_Kumar_Resume.pdf">
+                    <i class="far fa-file-pdf cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Open Resume (PDF)</span>
+                    <span class="cmd-item-shortcut">CV</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="toggle-theme">
+                    <i class="fas fa-circle-half-stroke cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Toggle Dark / Light Mode</span>
+                    <span class="cmd-item-shortcut">T</span>
+                </div>
+
+                <!-- Group: External Links -->
+                <div class="cmd-group-label">External Links</div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="open-url" data-url="https://github.com/Aniketkumar-01">
+                    <i class="fab fa-github cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">GitHub Profile</span>
+                    <span class="cmd-item-shortcut">github.com</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="open-url" data-url="https://linkedin.com/in/aniketkumar001">
+                    <i class="fab fa-linkedin cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">LinkedIn Profile</span>
+                    <span class="cmd-item-shortcut">linkedin.com</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="open-url" data-url="https://solar-rooftop-analyzer.streamlit.app/">
+                    <i class="fas fa-sun cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Solar Rooftop Analyzer (Live Demo)</span>
+                    <span class="cmd-item-shortcut">streamlit.app</span>
+                </div>
+                <div class="cmd-item" role="option" tabindex="0" data-action="open-url" data-url="https://heart-disease-prediction-ml-algos.streamlit.app/">
+                    <i class="fas fa-heart-pulse cmd-item-icon" aria-hidden="true"></i>
+                    <span class="cmd-item-text">Heart Disease Prediction App (Live Demo)</span>
+                    <span class="cmd-item-shortcut">streamlit.app</span>
+                </div>
+            </div>
+
+            <div class="cmd-footer-hints">
+                <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+                <span><kbd>↵</kbd> to select</span>
+                <span><kbd>esc</kbd> to close</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Feedback Toast -->
+    <div id="craft-toast" class="craft-toast" role="status" aria-live="polite">
+        <i class="fas fa-check-circle toast-icon" aria-hidden="true"></i>
+        <span id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <!-- Data and Application Script -->
+    <script src="data.js?v=2.0"></script>
+    <script src="script.js?v=2.0"></script>
 </body>
 </html>

@@ -1,337 +1,370 @@
+/**
+ * Aniket Kumar – Portfolio Engine
+ * Minimalist Design Engineering Architecture
+ * Inspired by chanhdai.com, ratneshc.com, ramx.in
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Populate Hero Section
-    const heroContainer = document.getElementById('hero-container');
-    if (portfolioData.personalInfo) {
-        const info = portfolioData.personalInfo;
-        heroContainer.innerHTML = `
-            <img src="assets/my pfp.jpg" alt="Profile Picture" class="profile-pic" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 2px solid var(--border-color);">
-            <span class="greeting">Hi, my name is</span>
-            <h1 class="name">${info.name}</h1>
-            <p class="tagline">${info.tagline}</p>
-            <p class="about-text">${info.about}</p>
-            <div class="social-links" style="margin-top: auto;">
-                ${info.linkedin ? `<a href="${info.linkedin}" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>` : ''}
-                ${info.github ? `<a href="${info.github}" target="_blank" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>` : ''}
-                ${info.email ? `<a href="https://mail.google.com/mail/?view=cm&fs=1&to=${info.email}" target="_blank" class="social-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>` : ''}
-            </div>
-            <a href="Aniket_Kumar_Resume.pdf" class="btn btn-primary" style="align-self: flex-start;" target="_blank" rel="noopener noreferrer">View Resume</a>
-        `;
+    // --------------------------------------------------------------------------
+    // 1. Theme Engine (Light / Dark Mode with Persistence & Shortcut)
+    // --------------------------------------------------------------------------
+    const htmlEl = document.documentElement;
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    function getPreferredTheme() {
+        const stored = localStorage.getItem('portfolio-theme');
+        if (stored === 'dark' || stored === 'light') {
+            return stored;
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
-    // Populate Contact Section
-    const contactContainer = document.getElementById('contact-container');
-    if (contactContainer && portfolioData.personalInfo) {
-        const info = portfolioData.personalInfo;
-        contactContainer.innerHTML = `
-            ${info.email ? `<a href="https://mail.google.com/mail/?view=cm&fs=1&to=${info.email}" target="_blank" class="btn contact-btn" style="margin-bottom: 0.8rem;"><img src="assets/gmail.png" alt="Email"> Email Me</a>` : ''}
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
-                ${info.linkedin ? `<a href="${info.linkedin}" target="_blank" class="btn contact-btn"><img src="assets/linkedin.png" alt="LinkedIn"> LinkedIn</a>` : ''}
-                ${info.github ? `<a href="${info.github}" target="_blank" class="btn contact-btn"><img src="assets/github.png" alt="GitHub"> GitHub</a>` : ''}
-            </div>
-            <a href="Aniket_Kumar_Resume.pdf" target="_blank" class="btn contact-btn" style="margin-top: 0.8rem;"><img src="assets/pdf.png" alt="Resume"> Resume</a>
-        `;
+    function applyTheme(theme, notify = false) {
+        htmlEl.setAttribute('data-theme', theme);
+        localStorage.setItem('portfolio-theme', theme);
+        if (notify) {
+            showToast(`Theme switched to ${theme === 'dark' ? 'Dark' : 'Light'} Mode`);
+        }
     }
 
-    // 2. Populate Experience Section
-    const expContainer = document.getElementById('experience-container');
-    if (portfolioData.experience && portfolioData.experience.length > 0) {
-        expContainer.innerHTML = portfolioData.experience.map(exp => `
-            <div class="timeline-item">
-                ${exp.image ? `<img src="${exp.image}" alt="Experience Banner" class="project-banner" style="width: 100%; height: auto; display: block; border-radius: 4px; margin-bottom: 1.5rem; border: 1px dashed var(--border-color);">` : ''}
-                <div class="item-header">
-                    <div>
-                        <h4 class="item-title">
-                            ${exp.role}
-                            ${exp.link && exp.link !== '#' ? `<a href="${exp.link}" target="_blank" aria-label="Project Link" style="margin-left: 8px; color: var(--text-secondary); font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i></a>` : ''}
-                        </h4>
-                        <span class="item-subtitle">${exp.company}</span>
-                    </div>
-                    <span class="item-date">${exp.duration}</span>
-                </div>
-                <div class="item-details">
-                    <ul>
-                        ${exp.description.map(item => `<li>${item}</li>`).join('')}
-                    </ul>
-                </div>
-            </div>
-        `).join('');
-    } else {
-        expContainer.innerHTML = '<p>No experience listed yet.</p>';
+    // Toggle theme handler
+    function toggleTheme(notify = true) {
+        const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme, notify);
     }
 
-    // 3. Populate Education Section
-    const eduContainer = document.getElementById('education-container');
-    if (portfolioData.education && portfolioData.education.length > 0) {
-        eduContainer.innerHTML = portfolioData.education.map(edu => `
-            <div class="timeline-item">
-                <div class="item-header">
-                    <div>
-                        <h4 class="item-title">${edu.degree}</h4>
-                        <span class="item-subtitle">${edu.institution}</span>
-                    </div>
-                    <span class="item-date">${edu.duration}</span>
-                </div>
-                <div class="item-details">
-                    <p>CGPA: <strong>${edu.cgpa}</strong></p>
-                </div>
-            </div>
-        `).join('');
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => toggleTheme(true));
     }
 
-    // 4. Populate Projects Section
-    const projContainer = document.getElementById('projects-container');
-    if (portfolioData.projects && portfolioData.projects.length > 0) {
-        projContainer.innerHTML = portfolioData.projects.map(proj => `
-            <div class="project-card">
-                ${proj.image ? `<img src="${proj.image}" alt="Project Banner" class="project-banner" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; border-radius: 4px; margin-bottom: 1.5rem; border: 1px dashed var(--border-color);">` : ''}
-                <div class="item-header" style="flex-wrap: nowrap; gap: 1rem;">
-                    <h4 class="item-title" style="flex: 1;">${proj.title}</h4>
-                    <div class="project-links" style="margin-bottom: 0; flex-shrink: 0;">
-                        ${proj.link !== '#' ? `<a href="${proj.link}" target="_blank" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>` : ''}
-                        ${proj.github !== '#' ? `<a href="${proj.github}" target="_blank" aria-label="GitHub Repo"><i class="fab fa-github"></i></a>` : ''}
-                    </div>
-                </div>
-                <div class="item-details">
-                    <ul>
-                        ${proj.description.map(desc => `<li>${desc}</li>`).join('')}
-                    </ul>
-                </div>
-                <div class="tech-stack">
-                    ${proj.techStack.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                </div>
-            </div>
-        `).join('');
-    }
-
-    // 4.5 Populate Certifications Section
-    const certContainer = document.getElementById('certifications-container');
-    if (certContainer && portfolioData.certifications && portfolioData.certifications.length > 0) {
-        certContainer.innerHTML = portfolioData.certifications.map(cert => `
-            <div class="timeline-item">
-                <div class="item-header" style="margin-bottom: 0;">
-                    <div>
-                        <h4 class="item-title" style="margin-bottom: 0.3rem;">
-                            ${cert.title}
-                            ${cert.link && cert.link !== '#' ? `<a href="${cert.link}" target="_blank" aria-label="Credential Link" style="margin-left: 8px; color: var(--text-secondary); font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i></a>` : ''}
-                        </h4>
-                        <span class="item-subtitle">${cert.issuer}</span>
-                    </div>
-                    <span class="item-date">${cert.date}</span>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    // 5. Populate Skills Section
-    const skillsContainer = document.getElementById('skills-container');
-    if (portfolioData.skills) {
-        // Flatten all skills into a single array
-        let allSkills = [];
-        Object.values(portfolioData.skills).forEach(skillsArray => {
-            allSkills = allSkills.concat(skillsArray);
-        });
-
-        const skillIcons = {
-            'Python': 'assets/python.png',
-            'HTML': 'assets/html.png',
-            'CSS': 'assets/css.png',
-            'JavaScript': 'assets/js.png',
-            'Git & GitHub': 'assets/github.png',
-            'Streamlit': 'assets/Streamlit.png'
-        };
-
-        skillsContainer.innerHTML = allSkills.map(skill => {
-            const iconPath = skillIcons[skill];
-            return `<span class="skill-tag" style="display: inline-flex; align-items: center; line-height: 1;">${iconPath ? `<img src="${iconPath}" alt="${skill}" style="width: 16px; height: 16px; margin-right: 6px; object-fit: contain;">` : ''}${skill}</span>`;
-        }).join('');
-    }
-
-    // Current Year for Footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-
-    // Intersection Observer for fade-in animations
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
-    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                return;
-            } else {
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, appearOptions);
-
-    faders.forEach(fader => {
-        appearOnScroll.observe(fader);
+    // Listen for OS system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('portfolio-theme')) {
+            applyTheme(e.matches ? 'dark' : 'light', false);
+        }
     });
 
-    // Hamburger Menu Logic
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+    // --------------------------------------------------------------------------
+    // 2. Real-time Indian Standard Time (IST) Clock for Ranchi
+    // --------------------------------------------------------------------------
+    const clockEl = document.getElementById('live-clock');
 
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = hamburger.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
+    function updateLiveClock() {
+        if (!clockEl) return;
+        try {
+            const now = new Date();
+            const timeString = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'Asia/Kolkata',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            }).format(now);
+            clockEl.textContent = timeString;
+        } catch (err) {
+            // Fallback to UTC offset calculation if Intl timezone fails
+            const d = new Date();
+            const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+            const istDate = new Date(utc + (3600000 * 5.5));
+            clockEl.textContent = istDate.toLocaleTimeString();
+        }
+    }
 
-        // Close menu when a link is clicked
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = hamburger.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+    updateLiveClock();
+    setInterval(updateLiveClock, 1000);
+
+    // --------------------------------------------------------------------------
+    // 3. Dynamic Footer Year
+    // --------------------------------------------------------------------------
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+
+    // --------------------------------------------------------------------------
+    // 4. Toast Notification System
+    // --------------------------------------------------------------------------
+    const toastEl = document.getElementById('craft-toast');
+    const toastMsgEl = document.getElementById('toast-message');
+    let toastTimeout = null;
+
+    function showToast(message, duration = 2500) {
+        if (!toastEl || !toastMsgEl) return;
+        toastMsgEl.textContent = message;
+        toastEl.classList.add('is-visible');
+
+        if (toastTimeout) {
+            clearTimeout(toastTimeout);
+        }
+
+        toastTimeout = setTimeout(() => {
+            toastEl.classList.remove('is-visible');
+        }, duration);
+    }
+
+    // --------------------------------------------------------------------------
+    // 5. Copy Email Action with Visual Feedback
+    // --------------------------------------------------------------------------
+    const emailToCopy = (typeof portfolioData !== 'undefined' && portfolioData.personalInfo && portfolioData.personalInfo.email) 
+        ? portfolioData.personalInfo.email 
+        : 'aniketkr2101@gmail.com';
+
+    function copyEmailToClipboard(triggerBtn) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(emailToCopy).then(() => {
+                handleCopySuccess(triggerBtn);
+            }).catch(() => {
+                fallbackCopy(emailToCopy, triggerBtn);
             });
+        } else {
+            fallbackCopy(emailToCopy, triggerBtn);
+        }
+    }
+
+    function fallbackCopy(text, triggerBtn) {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        tempInput.style.position = 'fixed';
+        tempInput.style.opacity = '0';
+        document.body.appendChild(tempInput);
+        tempInput.focus();
+        tempInput.select();
+        try {
+            document.execCommand('copy');
+            handleCopySuccess(triggerBtn);
+        } catch (e) {
+            showToast('Unable to copy to clipboard.');
+        }
+        document.body.removeChild(tempInput);
+    }
+
+    function handleCopySuccess(triggerBtn) {
+        showToast(`Copied ${emailToCopy} to clipboard!`);
+        if (triggerBtn) {
+            const labelEl = triggerBtn.querySelector('.copy-label');
+            if (labelEl) {
+                const originalText = labelEl.textContent;
+                labelEl.textContent = 'Copied!';
+                setTimeout(() => {
+                    labelEl.textContent = originalText;
+                }, 2000);
+            }
+        }
+    }
+
+    const heroCopyBtn = document.getElementById('copy-email-btn');
+    if (heroCopyBtn) {
+        heroCopyBtn.addEventListener('click', () => copyEmailToClipboard(heroCopyBtn));
+    }
+
+    const bottomCopyBtn = document.getElementById('copy-email-bottom-btn');
+    if (bottomCopyBtn) {
+        bottomCopyBtn.addEventListener('click', () => copyEmailToClipboard(bottomCopyBtn));
+    }
+
+    // --------------------------------------------------------------------------
+    // 6. Command Palette Modal (Cmd+K / Ctrl+K)
+    // --------------------------------------------------------------------------
+    const commandModal = document.getElementById('command-modal');
+    const openCommandBtn = document.getElementById('open-command-palette');
+    const closeCommandBtn = document.getElementById('close-command-palette');
+    const cmdSearchInput = document.getElementById('cmd-search-input');
+    const cmdResultsContainer = document.getElementById('cmd-results');
+
+    let allCmdItems = [];
+    if (cmdResultsContainer) {
+        allCmdItems = Array.from(cmdResultsContainer.querySelectorAll('.cmd-item'));
+    }
+
+    function openCommandPalette() {
+        if (!commandModal) return;
+        commandModal.classList.add('is-open');
+        commandModal.setAttribute('aria-hidden', 'false');
+        if (cmdSearchInput) {
+            cmdSearchInput.value = '';
+            filterCmdItems('');
+            setTimeout(() => cmdSearchInput.focus(), 50);
+        }
+    }
+
+    function closeCommandPalette() {
+        if (!commandModal) return;
+        commandModal.classList.remove('is-open');
+        commandModal.setAttribute('aria-hidden', 'true');
+    }
+
+    if (openCommandBtn) {
+        openCommandBtn.addEventListener('click', openCommandPalette);
+    }
+
+    if (closeCommandBtn) {
+        closeCommandBtn.addEventListener('click', closeCommandPalette);
+    }
+
+    // Click outside to close
+    if (commandModal) {
+        commandModal.addEventListener('click', (e) => {
+            if (e.target === commandModal) {
+                closeCommandPalette();
+            }
         });
     }
 
-    // --- Neural Network Background Animation ---
-    const canvas = document.getElementById('neural-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-        
-        let particles = [];
-        const properties = {
-            particleColor: 'rgba(255, 255, 255, 0.4)',
-            lineColor: 'rgba(255, 255, 255, 0.15)',
-            particleAmount: Math.floor((width * height) / 15000), // Responsive amount
-            defaultRadius: 1.2,
-            variantRadius: 1,
-            defaultSpeed: 0.2,
-            variantSpeed: 0.2,
-            linkRadius: 130,
-        };
+    // Filter command items based on search query
+    function filterCmdItems(query) {
+        const cleanQuery = query.trim().toLowerCase();
+        let visibleCount = 0;
 
-        let mouse = { x: null, y: null };
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
+        allCmdItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            const action = item.getAttribute('data-action') || '';
+            const target = item.getAttribute('data-target') || '';
+            const isMatch = text.includes(cleanQuery) || action.includes(cleanQuery) || target.includes(cleanQuery);
+
+            if (isMatch) {
+                item.style.display = 'flex';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+            item.classList.remove('is-selected');
         });
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.speed = properties.defaultSpeed + Math.random() * properties.variantSpeed;
-                this.directionAngle = Math.floor(Math.random() * 360);
-                this.color = properties.particleColor;
-                this.radius = properties.defaultRadius + Math.random() * properties.variantRadius;
-                this.vector = {
-                    x: Math.cos(this.directionAngle) * this.speed,
-                    y: Math.sin(this.directionAngle) * this.speed
-                };
-            }
-            update() {
-                this.border();
-                this.x += this.vector.x;
-                this.y += this.vector.y;
-            }
-            border() {
-                if (this.x >= width || this.x <= 0) {
-                    this.vector.x *= -1;
-                }
-                if (this.y >= height || this.y <= 0) {
-                    this.vector.y *= -1;
-                }
-                if (this.x > width) this.x = width;
-                if (this.y > height) this.y = height;
-                if (this.x < 0) this.x = 0;
-                if (this.y < 0) this.y = 0;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-        }
-
-        function setup() {
-            particles = [];
-            for (let i = 0; i < properties.particleAmount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function drawLines() {
-            let x1, y1, x2, y2, length, opacity;
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    x1 = particles[i].x;
-                    y1 = particles[i].y;
-                    x2 = particles[j].x;
-                    y2 = particles[j].y;
-                    length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-                    if (length < properties.linkRadius) {
-                        opacity = 1 - length / properties.linkRadius;
-                        ctx.lineWidth = 0.5;
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.25})`;
-                        ctx.beginPath();
-                        ctx.moveTo(x1, y1);
-                        ctx.lineTo(x2, y2);
-                        ctx.closePath();
-                        ctx.stroke();
+        // Hide/show group headers if all child items in group are hidden
+        if (cmdResultsContainer) {
+            const groupLabels = cmdResultsContainer.querySelectorAll('.cmd-group-label');
+            groupLabels.forEach(label => {
+                let nextEl = label.nextElementSibling;
+                let hasVisibleSibling = false;
+                while (nextEl && !nextEl.classList.contains('cmd-group-label')) {
+                    if (nextEl.classList.contains('cmd-item') && nextEl.style.display !== 'none') {
+                        hasVisibleSibling = true;
+                        break;
                     }
+                    nextEl = nextEl.nextElementSibling;
                 }
-                // Mouse interaction
-                if (mouse.x && mouse.y) {
-                    x1 = particles[i].x;
-                    y1 = particles[i].y;
-                    x2 = mouse.x;
-                    y2 = mouse.y;
-                    length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-                    if (length < properties.linkRadius * 1.5) {
-                        opacity = 1 - length / (properties.linkRadius * 1.5);
-                        ctx.lineWidth = 1;
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.5})`;
-                        ctx.beginPath();
-                        ctx.moveTo(x1, y1);
-                        ctx.lineTo(x2, y2);
-                        ctx.closePath();
-                        ctx.stroke();
-                    }
-                }
-            }
+                label.style.display = hasVisibleSibling ? 'block' : 'none';
+            });
         }
 
-        function loop() {
-            requestAnimationFrame(loop);
-            ctx.clearRect(0, 0, width, height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
-            drawLines();
+        // Highlight first visible item
+        const firstVisible = allCmdItems.find(item => item.style.display !== 'none');
+        if (firstVisible) {
+            firstVisible.classList.add('is-selected');
         }
-
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            properties.particleAmount = Math.floor((width * height) / 15000);
-            setup();
-        });
-
-        setup();
-        loop();
     }
+
+    if (cmdSearchInput) {
+        cmdSearchInput.addEventListener('input', (e) => {
+            filterCmdItems(e.target.value);
+        });
+    }
+
+    // Execute Command Action
+    function executeCmdItem(item) {
+        if (!item) return;
+        const action = item.getAttribute('data-action');
+        const target = item.getAttribute('data-target');
+        const url = item.getAttribute('data-url');
+
+        closeCommandPalette();
+
+        if (action === 'navigate' && target) {
+            const targetSection = document.querySelector(target);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (action === 'copy-email') {
+            copyEmailToClipboard(heroCopyBtn);
+        } else if (action === 'toggle-theme') {
+            toggleTheme(true);
+        } else if (action === 'open-url' && url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    }
+
+    // Click item in results list
+    allCmdItems.forEach(item => {
+        item.addEventListener('click', () => {
+            executeCmdItem(item);
+        });
+    });
+
+    // Keyboard navigation in modal & Global hotkeys
+    window.addEventListener('keydown', (e) => {
+        // Cmd+K or Ctrl+K to open
+        if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+            e.preventDefault();
+            if (commandModal && commandModal.classList.contains('is-open')) {
+                closeCommandPalette();
+            } else {
+                openCommandPalette();
+            }
+            return;
+        }
+
+        // Escape closes command modal
+        if (e.key === 'Escape' && commandModal && commandModal.classList.contains('is-open')) {
+            e.preventDefault();
+            closeCommandPalette();
+            return;
+        }
+
+        // 'T' to toggle theme when modal is closed and user isn't in an input/textarea
+        if ((e.key === 't' || e.key === 'T') && !e.metaKey && !e.ctrlKey && !e.altKey) {
+            const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+            const isEditing = activeTag === 'input' || activeTag === 'textarea' || document.activeElement.isContentEditable;
+            if (!isEditing && (!commandModal || !commandModal.classList.contains('is-open'))) {
+                e.preventDefault();
+                toggleTheme(true);
+                return;
+            }
+        }
+
+        // When command modal is open: handle ArrowUp, ArrowDown, Enter
+        if (commandModal && commandModal.classList.contains('is-open')) {
+            const visibleItems = allCmdItems.filter(item => item.style.display !== 'none');
+            if (visibleItems.length === 0) return;
+
+            const currentIndex = visibleItems.findIndex(item => item.classList.contains('is-selected'));
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const nextIndex = (currentIndex + 1) % visibleItems.length;
+                visibleItems.forEach(i => i.classList.remove('is-selected'));
+                visibleItems[nextIndex].classList.add('is-selected');
+                visibleItems[nextIndex].scrollIntoView({ block: 'nearest' });
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prevIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+                visibleItems.forEach(i => i.classList.remove('is-selected'));
+                visibleItems[prevIndex].classList.add('is-selected');
+                visibleItems[prevIndex].scrollIntoView({ block: 'nearest' });
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (currentIndex >= 0) {
+                    executeCmdItem(visibleItems[currentIndex]);
+                } else if (visibleItems.length > 0) {
+                    executeCmdItem(visibleItems[0]);
+                }
+            }
+        }
+    });
+
+    // --------------------------------------------------------------------------
+    // 7. Interactive Hover Craft Enhancements
+    // --------------------------------------------------------------------------
+    // Smooth scroll for in-page anchors
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+                e.preventDefault();
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
 });
