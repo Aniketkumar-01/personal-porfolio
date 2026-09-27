@@ -3,7 +3,7 @@ const portfolioData = {
     name: "Aniket Kumar",
     handle: "@aniketkumar",
     tagline: "B.Tech CSE Student · Machine Learning & Cloud",
-    role: "ML & Software Developer",
+    role: "CSE Undergrad",
     location: "Ranchi, Jharkhand, India",
     timezone: "Asia/Kolkata",
     utcOffset: "+05:30",
